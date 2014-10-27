@@ -1,4 +1,4 @@
-"区域赛vim快速配置
+
 sy on
 set ai
 set ci
