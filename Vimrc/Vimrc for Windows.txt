@@ -28,57 +28,57 @@ function MyDiff()
   silent execute '!' . cmd . ' ' . opt . arg1 . ' ' . arg2 . ' > ' . arg3 . eq
 endfunction
 
-"Ä¬ÈÏÎÄ¼ş±£´æÎ»ÖÃ
+"é»˜è®¤æ–‡ä»¶ä¿å­˜ä½ç½®
 exec 'cd ' . fnameescape('D:\Save Code')
-"¹Ø±Õ¼æÈİÄ£Ê½
+"å…³é—­å…¼å®¹æ¨¡å¼
 set nocompatible
-"Ä£·Â¿ì½İ¼ü£¬Èç:Ctrl+AÈ«Ñ¡¡¢Ctrl+C¸´ÖÆ¡¢Ctrl+VÕ³ÌùµÈµÈ
+"æ¨¡ä»¿å¿«æ·é”®ï¼Œå¦‚:Ctrl+Aå…¨é€‰ã€Ctrl+Cå¤åˆ¶ã€Ctrl+Vç²˜è´´ç­‰ç­‰
 source $VIMRUNTIME/vimrc_example.vim
 source $VIMRUNTIME/mswin.vim
 behave mswin
-"gvim×ÖÌåÉèÖÃ
-set guifont=ĞÂËÎÌå:h14:cGB2312
-"gvimÄÚ²¿±àÂë
+"gvimå­—ä½“è®¾ç½®
+set guifont=æ–°å®‹ä½“:h14:cGB2312
+"gvimå†…éƒ¨ç¼–ç 
 set encoding=utf-8
-"µ±Ç°±à¼­µÄÎÄ¼ş±àÂë
+"å½“å‰ç¼–è¾‘çš„æ–‡ä»¶ç¼–ç 
 set fileencoding=chinese
-"gvim´ò¿ªÖ§³Ö±àÂëµÄÎÄ¼ş
+"gvimæ‰“å¼€æ”¯æŒç¼–ç çš„æ–‡ä»¶
 set fileencodings=ucs-bom,utf-8,gbk,cp936,gb2312,big5,euc-jp,euc-kr,latin1
 "set langmenu=zh_CN
 "let $LANG = 'zh_CN.UTF-8'
-"½â¾öconsleÊä³öÂÒÂë
+"è§£å†³consleè¾“å‡ºä¹±ç 
 language messages zh_CN.utf-8
-"½â¾ö²Ëµ¥ÂÒÂë
+"è§£å†³èœå•ä¹±ç 
 source $VIMRUNTIME/delmenu.vim
 source $VIMRUNTIME/menu.vim
-"ÉèÖÃÖÕ¶Ë±àÂëÎªgvimÄÚ²¿±àÂëencoding
+"è®¾ç½®ç»ˆç«¯ç¼–ç ä¸ºgvimå†…éƒ¨ç¼–ç encoding
 let &termencoding=&encoding
-"·ÀÖ¹ÌØÊâ·ûºÅÎŞ·¨Õı³£ÏÔÊ¾
+"é˜²æ­¢ç‰¹æ®Šç¬¦å·æ— æ³•æ­£å¸¸æ˜¾ç¤º
 set ambiwidth=double
-"Ëõ½ø³ß´çÎª4¸ö¿Õ¸ñ
+"ç¼©è¿›å°ºå¯¸ä¸º4ä¸ªç©ºæ ¼
 set sw=4
-"tab¿í¶ÈÎª4¸ö×Ö·û
+"tabå®½åº¦ä¸º4ä¸ªå­—ç¬¦
 set ts=4
-"±à¼­Ê±½«ËùÓĞtabÌæ»»Îª¿Õ¸ñ
+"ç¼–è¾‘æ—¶å°†æ‰€æœ‰tabæ›¿æ¢ä¸ºç©ºæ ¼
 set et
-"°´Ò»´Îbackspace¾ÍÉ¾³ı4¸ö¿Õ¸ñÁË
+"æŒ‰ä¸€æ¬¡backspaceå°±åˆ é™¤4ä¸ªç©ºæ ¼äº†
 set smarttab
-"²»Éú³É±¸·İÎÄ¼ş,Èçindex.html~ 
+"ä¸ç”Ÿæˆå¤‡ä»½æ–‡ä»¶,å¦‚index.html~ 
 set nobackup
-"¿ªÆôĞĞºÅ±ê¼Ç
+"å¼€å¯è¡Œå·æ ‡è®°
 set number
-"ÅäÉ«·½°¸Îªdesert
+"é…è‰²æ–¹æ¡ˆä¸ºdesert
 colo desert
-"¹Ø±ÕÉÏ²à¹¤¾ßÀ¸
+"å…³é—­ä¸Šä¾§å·¥å…·æ 
 set guioptions-=T
-"¹Ø±ÕÓÒ²à¹ö¶¯Ìõ
+"å…³é—­å³ä¾§æ»šåŠ¨æ¡
 set guioptions-=r
-"¿ªÆô×Ô¶¯Ëõ½ø
+"å¼€å¯è‡ªåŠ¨ç¼©è¿›
 set autoindent
-"´úÂëÕÛµş
+"ä»£ç æŠ˜å 
 set foldmethod=indent
 
-"Ò»¼ü±àÒëÉèÖÃ
+"ä¸€é”®ç¼–è¯‘è®¾ç½®
 map <F9> :call CompileCpp()<CR>
 function CompileCpp()
     set makeprg=g++\ -o\ %<\ %
@@ -92,7 +92,7 @@ function CompileCpp()
     endif
 endfunctio
 
-
+â€œå‘¼å‡ºå¤´æ–‡ä»¶
 map <F1> :call SetTitle()<CR>
 func SetTitle()
 let l = 0
@@ -150,7 +150,7 @@ let l = l + 1 | call setline(l,'    return 0;')
 let l = l + 1 | call setline(l,'}')
 endfunc
 
-
+"ä¸€é”®æ³¨é‡Š
 map<f4> :call AddComment()<cr>
 func AddComment()
     if (getline('.')[0] == '/')
