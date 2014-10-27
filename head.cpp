@@ -39,3 +39,4 @@ typedef pair<int,int> PII;
 # define keytree (chd[chd[root][1]][0])
 # define rep(i,a,b) for(i=(a);i<=(b);i++))
 # define forall(it,c) for(typeof((c).begin())it=(c).begin();it!=(c).end();it++)
+
