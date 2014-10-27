@@ -1,0 +1,9 @@
+"区域赛vim快速配置
+sy on
+set ai
+set ci
+set si
+set ts=4
+set sts=4
+set sw=4
+set mouse=a
