@@ -1,92 +1,52 @@
-# include<map>
-# include<set>
-# include<list>
-# include<cmath>
-# include<queue>
-# include<stack>
-# include<vector>
-# include<string>
-# include<cstdio>
-# include<cstring>
-# include<iostream>
-# include<algorithm>
-# include<functional>
-using namespace std;
-
-typedef pair<int,int> PII;
-# define INF 1<<30
-# define LL long long
-# define MOD 1000000007
-# define VI vector<int>
-# define VLL vector<LL>
-# define VPII vector<PII>
-# define VS vector<string>
-# define PII pair<int,int>
-
-# define F first
-# define S second
-# define mp make_pair
-# define pb push_back
-# define lb lower_bound
-# define up upper_bound
-# define lowbit(x)(x&-x)
-# define lson l,m,rt<<1
-# define rson m+1,r,rt<<1|1
-# define clr(x) (x).clear()
-# define sz(x) ((int)(x).size())
-# define all(x) (x).begin(),(x).end()
-# define mem(x,y) memset(x,y,sizeof(x))
-# define rep(i,a,b) for(i=(a);i<=(b);i++))
-# define forall(it,c) for(typeof((c).begin())it=(c).begin();it!=(c).end();it++)
 
 /*
- * [¶şÎ¬¼¸ºÎ»ù±¾º¯Êı]  [lrj°æ]
- * ×¢Òâ1: Ê¹ÓÃÇ°±ØĞëµ÷Èë<math.h>Í·ÎÄ¼ş
+ * [äºŒç»´å‡ ä½•åŸºæœ¬å‡½æ•°]  [lrjç‰ˆ]
+ * æ³¨æ„1: ä½¿ç”¨å‰å¿…é¡»è°ƒå…¥<math.h>å¤´æ–‡ä»¶
  * 
- *  º¯ÊıÁĞ±í:
- *  (1).»ù±¾¶¨Òå
+ *  å‡½æ•°åˆ—è¡¨:
+ *  (1).åŸºæœ¬å®šä¹‰
  *  Point(double x, double y)
  *  Circle(Point c, double r)
  *  Line(Point p, Vector v)
  *  
- *  (2)ÏòÁ¿ÔËËã
- *  [1]Á½ÏòÁ¿µã»ı         double Dot(Vector a, Vector b) 
- *  [2]Á½ÏòÁ¿µÄ²æ»ı       double Cross(Vector a, Vector b)
- *  [3]ÏòÁ¿µÄ³¤¶È         double Length(Vector a)
- *  [4]ÏòÁ¿µÄ¼«½Ç         double angle(Vector v)
- *  [5]Á½ÏòÁ¿µÄ×ª½Ç       double Angle(Vector a, Vector b)
- *  [6]ÏòÁ¿ÈÆÆğµãĞı×ª     Vector Rotate(Vector a, double rad)
- *  [7]ÏòÁ¿µÄµ¥Î»·¨ÏòÁ¿   Vector Normal(Vector a)
+ *  (2)å‘é‡è¿ç®—
+ *  [1]ä¸¤å‘é‡ç‚¹ç§¯         double Dot(Vector a, Vector b) 
+ *  [2]ä¸¤å‘é‡çš„å‰ç§¯       double Cross(Vector a, Vector b)
+ *  [3]å‘é‡çš„é•¿åº¦         double Length(Vector a)
+ *  [4]å‘é‡çš„æè§’         double angle(Vector v)
+ *  [5]ä¸¤å‘é‡çš„è½¬è§’       double Angle(Vector a, Vector b)
+ *  [6]å‘é‡ç»•èµ·ç‚¹æ—‹è½¬     Vector Rotate(Vector a, double rad)
+ *  [7]å‘é‡çš„å•ä½æ³•å‘é‡   Vector Normal(Vector a)
  *
- *  (3)µãºÍÖ±Ïß
- *  [8].¶şÖ±Ïß½»µã(²ÎÊıÊ½)         Point GetLineIntersection(Point p, Vector v, Point q, Vector w)
- *  [9].Ïß¶Î¹æ·¶Ïà½»ÅĞ¶Ï(Á½µãÊ½)   bool SegmentProperIntersection(Point a1, Point a2, Point b1, Point b2) 
- *  [10].µãµ½Ö±ÏßµÄ¾àÀë(Á½µãÊ½)    double DistanceToLine(Point p, Point a, Point b)
- *  [11].µãµ½Ïß¶Î×î½üµãµÄ¾àÀë      double DistanceToSegment(Point p, Point a, Point b)
- *  [12].µãÔÚÖ±ÏßÉÏµÄÍ¶Ó°(¶şµãÊ½)  Point GetLineProjection(Point p, Point a, Point b)
- *  [13].µãÔÚÏß¶ÎÉÏµÄÅĞ¶Ï(¶şµãÊ½)  bool OnSegment(Point p, Point a1, Point a2) 
+ *  (3)ç‚¹å’Œç›´çº¿
+ *  [8].äºŒç›´çº¿äº¤ç‚¹(å‚æ•°å¼)         Point GetLineIntersection(Point p, Vector v, Point q, Vector w)
+ *  [9].çº¿æ®µè§„èŒƒç›¸äº¤åˆ¤æ–­(ä¸¤ç‚¹å¼)   bool SegmentProperIntersection(Point a1, Point a2, Point b1, Point b2) 
+ *  [10].ç‚¹åˆ°ç›´çº¿çš„è·ç¦»(ä¸¤ç‚¹å¼)    double DistanceToLine(Point p, Point a, Point b)
+ *  [11].ç‚¹åˆ°çº¿æ®µæœ€è¿‘ç‚¹çš„è·ç¦»      double DistanceToSegment(Point p, Point a, Point b)
+ *  [12].ç‚¹åœ¨ç›´çº¿ä¸Šçš„æŠ•å½±(äºŒç‚¹å¼)  Point GetLineProjection(Point p, Point a, Point b)
+ *  [13].ç‚¹åœ¨çº¿æ®µä¸Šçš„åˆ¤æ–­(äºŒç‚¹å¼)  bool OnSegment(Point p, Point a1, Point a2) 
  *
- *  (4)¶à±ßĞÎ
- *  [14]Èı½ÇĞÎÓĞÏòÃæ»ıµÄÁ½±¶  double Area2(Point a, Point b, Point c)
- *  [15]¶à±ßĞÎÓĞÏòÃæ»ı µã[0, n)   double PolygonArea(Point p[], int n)
+ *  (4)å¤šè¾¹å½¢
+ *  [14]ä¸‰è§’å½¢æœ‰å‘é¢ç§¯çš„ä¸¤å€  double Area2(Point a, Point b, Point c)
+ *  [15]å¤šè¾¹å½¢æœ‰å‘é¢ç§¯ ç‚¹[0, n)   double PolygonArea(Point p[], int n)
  *
- *  (5)ÓëÔ²ºÍÇòÏà¹ØµÄ¼ÆËãÎÊÌâ
- *  [16]Ö±ÏßÓëÔ²µÄ½»µã         		int GetLineCircleIntersection(Line l, Circlr c, Point &p1, Point &p2, vector<Point> &ans)
- *  [17]Á½Ô²Ïà½»(Çó½»µã)       		int GetCircleCirlceIntersection(Circle c1, Circle c2, vector<Point> &ans)
- *  [18]¹ı¶¨µã×÷Ô²µÄÇĞÏß       		int GetTangents(Point p, Circle c, Vector v[])
- *  [19]Á½Ô²µÄ¹«ÇĞÏß(ÅĞ¶ÏÁ½Ô²¹ØÏµ)	int GetTangents(Circle c1, Circle c2, Point a[], Point b[])
- *  [20]Èı½ÇĞÎÄÚÇĞÔ²                	Circle InCircle(Point p1, Point p2, Point p3)
- *  [21]Èı½ÇĞÎÍâ½ÓÔ²                	Circle OutCircle(Point p1, Point p2, Point p3)
+ *  (5)ä¸åœ†å’Œçƒç›¸å…³çš„è®¡ç®—é—®é¢˜
+ *  [16]ç›´çº¿ä¸åœ†çš„äº¤ç‚¹         		int GetLineCircleIntersection(Line l, Circlr c, Point &p1, Point &p2, vector<Point> &ans)
+ *  [17]ä¸¤åœ†ç›¸äº¤(æ±‚äº¤ç‚¹)       		int GetCircleCirlceIntersection(Circle c1, Circle c2, vector<Point> &ans)
+ *  [18]è¿‡å®šç‚¹ä½œåœ†çš„åˆ‡çº¿       		int GetTangents(Point p, Circle c, Vector v[])
+ *  [19]ä¸¤åœ†çš„å…¬åˆ‡çº¿(åˆ¤æ–­ä¸¤åœ†å…³ç³»)	int GetTangents(Circle c1, Circle c2, Point a[], Point b[])
+ *  [20]ä¸‰è§’å½¢å†…åˆ‡åœ†                	Circle InCircle(Point p1, Point p2, Point p3)
+ *  [21]ä¸‰è§’å½¢å¤–æ¥åœ†                	Circle OutCircle(Point p1, Point p2, Point p3)
  *
- *  (6)¶şÎ¬¼¸ºÎ³£ÓÃËã·¨
- *  [22]µãÔÚ¶à±ßĞÎÄÚÅĞ¶Ï            int IsPointInPolygon(Point p, Point poly[], int n) 
- *  [23]¼ÆËãÍ¹°ü                    int ConvexHull(Point p[], int n, Point ans[])
+ *  (6)äºŒç»´å‡ ä½•å¸¸ç”¨ç®—æ³•
+ *  [22]ç‚¹åœ¨å¤šè¾¹å½¢å†…åˆ¤æ–­            int IsPointInPolygon(Point p, Point poly[], int n) 
+ *  [23]è®¡ç®—å‡¸åŒ…                    int ConvexHull(Point p[], int n, Point ans[])
  */
 
 const double eps = 1e-10;
 const double PI = acos(-1.0);
 
-//¾«¶È¿ØÖÆ
+//ç²¾åº¦æ§åˆ¶
 int dcmp(double x)
 {
     if (fabs(x) < eps)
@@ -130,7 +90,7 @@ struct Point
         return dcmp(x - b.x) == 0 && dcmp(y - b.y) == 0;
     }
 };
-typedef Point Vector;   //Vector: ÏòÁ¿
+typedef Point Vector;   //Vector: å‘é‡
 
 struct Circle
 {
@@ -156,53 +116,53 @@ struct Line
     }
 };
 
-//[1]Á½ÏòÁ¿µã»ı
+//[1]ä¸¤å‘é‡ç‚¹ç§¯
 double Dot(Vector a, Vector b)
 {
     return a.x * b.x + a.y * b.y;
 }
 
-//[2]Á½ÏòÁ¿²æ»ı
+//[2]ä¸¤å‘é‡å‰ç§¯
 double Cross(Vector a, Vector b)
 {
     return a.x * b.y - a.y * b.x;
 }
 
-//[3]ÏòÁ¿³¤¶È
+//[3]å‘é‡é•¿åº¦
 double Length(Vector a)
 {
     return sqrt(Dot(a, a));
 }
 
-//[4]ÏòÁ¿µÄ¼«½Ç
+//[4]å‘é‡çš„æè§’
 double angle(Vector v)
 {
     return atan2(v.y, v.x);
 }
 
-//[5]Á½ÏòÁ¿¼Ğ½Ç µ¥Î»:PI ·¶Î§:[0, PI]
+//[5]ä¸¤å‘é‡å¤¹è§’ å•ä½:PI èŒƒå›´:[0, PI]
 double Angle(Vector a, Vector b)
 {
     return acos(Dot(a, b) / Length(a) / Length(b));
 }
 
-//[6]ÏòÁ¿ÈÆÆğµãĞı×ª (radÎªÄæÊ±ÕëĞı×ªµÄ½Ç µ¥Î»:»¡¶È)
+//[6]å‘é‡ç»•èµ·ç‚¹æ—‹è½¬ (radä¸ºé€†æ—¶é’ˆæ—‹è½¬çš„è§’ å•ä½:å¼§åº¦)
 //1.x' = x * cosa - y * sina; y' = x * sina + y * cosa; 
-//2.ÈôË³Ê±ÕëĞı×ª, radÈ¡¸º¼´¿É
+//2.è‹¥é¡ºæ—¶é’ˆæ—‹è½¬, radå–è´Ÿå³å¯
 Vector Rotate(Vector a, double rad)
 {
     return Vector(a.x * cos(rad) - a.y * sin(rad), a.x * sin(rad) + a.y * cos(rad));
 }
 
-//[7]ÏòÁ¿µÄµ¥Î»·¨ÏòÁ¿
+//[7]å‘é‡çš„å•ä½æ³•å‘é‡
 Vector Normal(Vector a)
 {
     double L = Length(a);
     return Vector(-a.y / L, a.x / L);
 }
 
-//[8]Á½Ö±Ïß½»µã
-//µ÷ÓÃÇ°ÇëÈ·±£Á½ÌõÖ±Ïßp+tvºÍq+tvÓĞÎ¨Ò»µÄ½»µã¡£µ±ÇÒ½öµ±Cross(v,w)·Ç0
+//[8]ä¸¤ç›´çº¿äº¤ç‚¹
+//è°ƒç”¨å‰è¯·ç¡®ä¿ä¸¤æ¡ç›´çº¿p+två’Œq+tvæœ‰å”¯ä¸€çš„äº¤ç‚¹ã€‚å½“ä¸”ä»…å½“Cross(v,w)é0
 Point GetLineIntersection(Point p, Vector v, Point q, Vector w)
 {
     Vector u = p - q;
@@ -210,8 +170,8 @@ Point GetLineIntersection(Point p, Vector v, Point q, Vector w)
     return p + v * t;
 }
 
-//[9]ÅĞ¶ÏÏß¶Î(a1a2, b1b2)ÊÇ·ñÏà½»(¹æ·¶Ïà½»)
-//¹æ·¶Ïà½»:Ã¿ÌõÏß¶ÎµÄÁ½¸ö¶Ëµã¶¼ÔÚÁíÒ»ÌõÏß¶ÎµÄÁ½²à
+//[9]åˆ¤æ–­çº¿æ®µ(a1a2, b1b2)æ˜¯å¦ç›¸äº¤(è§„èŒƒç›¸äº¤)
+//è§„èŒƒç›¸äº¤:æ¯æ¡çº¿æ®µçš„ä¸¤ä¸ªç«¯ç‚¹éƒ½åœ¨å¦ä¸€æ¡çº¿æ®µçš„ä¸¤ä¾§
 bool SegmentProperIntersection(Point a1, Point a2, Point b1, Point b2)
 {
     double c1 = Cross(a2 - a1, b1 - a1);
@@ -221,14 +181,14 @@ bool SegmentProperIntersection(Point a1, Point a2, Point b1, Point b2)
     return dcmp(c1) * dcmp(c2) < 0 && dcmp(c3) * dcmp(c4) < 0;
 }
 
-//[10]µãµ½Ö±ÏßµÄ¾àÀë 
+//[10]ç‚¹åˆ°ç›´çº¿çš„è·ç¦» 
 double DistanceToLine(Point p, Point a, Point b)
 {
     Vector v1 = b - a, v2 = p - a;
-    return fabs(Cross(v1, v2) / Length(v1));   //Èç¹û²»È¡¾ø¶ÔÖµ, µÃµ½µÄÊÇÓĞÏò¾àÀë
+    return fabs(Cross(v1, v2) / Length(v1));   //å¦‚æœä¸å–ç»å¯¹å€¼, å¾—åˆ°çš„æ˜¯æœ‰å‘è·ç¦»
 }
 
-//[11]µãµ½Ïß¶Î×î½üµãµÄ¾àÀë
+//[11]ç‚¹åˆ°çº¿æ®µæœ€è¿‘ç‚¹çš„è·ç¦»
 double DistanceToSegment(Point p, Point a, Point b)
 {
     if (a == b) return Length(p - a);
@@ -238,26 +198,26 @@ double DistanceToSegment(Point p, Point a, Point b)
     else return fabs(Cross(v1, v2) / Length(v1));
 }
 
-//[12]µãpÔÚÖ±ÏßabÉÏµÄÍ¶Ó°µã
+//[12]ç‚¹påœ¨ç›´çº¿abä¸Šçš„æŠ•å½±ç‚¹
 Point GetLineProjection(Point p, Point a, Point b)
 {
     Vector v = b - a;
     return a + v * (Dot(v, p - a) / Dot(v, v));
 }
 
-//[13]ÅĞ¶ÏµãpÊÇ·ñÔÚÏß¶Îa1a2ÉÏ
+//[13]åˆ¤æ–­ç‚¹pæ˜¯å¦åœ¨çº¿æ®µa1a2ä¸Š
 bool OnSegment(Point p, Point a1, Point a2) 
 {
     return dcmp(Cross(a1 - p, a2 - p)) == 0 && dcmp(Dot(a1 - p, a2 - p)) < 0;
 }
 
-//[14]Èı½ÇĞÎÃæ»ı*2
+//[14]ä¸‰è§’å½¢é¢ç§¯*2
 double Area2(Point a, Point b, Point c)
 {
     return Cross(b - a, c - a);
 }
 
-//[15]¶à±ßĞÎµÄÓĞÏòÃæ»ı  µã·¶Î§[0, n)
+//[15]å¤šè¾¹å½¢çš„æœ‰å‘é¢ç§¯  ç‚¹èŒƒå›´[0, n)
 double PolygonArea(Point p[], int n)
 {
     int i;
@@ -267,15 +227,15 @@ double PolygonArea(Point p[], int n)
     return area / 2;   
 }
 
-//[16]Ö±ÏßÓëÔ²µÄ½»µã
+//[16]ç›´çº¿ä¸åœ†çš„äº¤ç‚¹
 int GetLineCircleIntersection(Line l, Circle c1, Point &p1, Point &p2, vector<Point> &ans)
 {
     double t1, t2;
     double a = l.v.x, b = l.p.x - c1.c.x, c = l.v.y, d = l.p.y - c1.c.y;
     double e = a * a + c * c, f = 2 * (a * b + c * d), g = b * b + d * d - c1.r * c1.r;
     double delta = f * f - 4 * e * g;
-    if (dcmp(delta) < 0) return 0;   //ÏàÀë
-    if (dcmp(delta) == 0)  //ÏàÇĞ
+    if (dcmp(delta) < 0) return 0;   //ç›¸ç¦»
+    if (dcmp(delta) == 0)  //ç›¸åˆ‡
     {
         t1 = t2 = -f / (2 * e);
         p1 = p2 = l.point(t1);
@@ -292,20 +252,20 @@ int GetLineCircleIntersection(Line l, Circle c1, Point &p1, Point &p2, vector<Po
 }
 
 
-//[17]Á½Ô²Ïà½»½»µã
-//·µ»ØÖµ -1:Á½Ô²ÖØºÏ 0:Á½Ô²ÏàÀë  1:Á½Ô²ÏàÇĞ  2:Á½Ô²Ïà½»
+//[17]ä¸¤åœ†ç›¸äº¤äº¤ç‚¹
+//è¿”å›å€¼ -1:ä¸¤åœ†é‡åˆ 0:ä¸¤åœ†ç›¸ç¦»  1:ä¸¤åœ†ç›¸åˆ‡  2:ä¸¤åœ†ç›¸äº¤
 int GetCircleCirlceIntersection(Circle c1, Circle c2, vector<Point> &ans)
 {
     double d = Length(c1.c - c2.c);
     if (dcmp(d) == 0)
     {
-        if (dcmp(c1.r - c2.r) == 0) return -1;  //Á½Ô²ÖØºÏ
+        if (dcmp(c1.r - c2.r) == 0) return -1;  //ä¸¤åœ†é‡åˆ
         return 0;
     }
-    if (dcmp(c1.r + c2.r - d) < 0) return 0;           //Á½Ô²ÏàÀë
-    if (dcmp(fabs(c1.r - c2.r) - d) > 0) return 0;    //Á½Ô²ÄÚº¬
-    double a = angle(c2.c - c1.c);   //ÏòÁ¿c1c2µÄ¼«½Ç
-    double da = acos((c1.r * c1.r + d * d - c2.r * c2.r) / (2 * c1.r * d));  //c1c2µ½c1p1µÄ½Ç
+    if (dcmp(c1.r + c2.r - d) < 0) return 0;           //ä¸¤åœ†ç›¸ç¦»
+    if (dcmp(fabs(c1.r - c2.r) - d) > 0) return 0;    //ä¸¤åœ†å†…å«
+    double a = angle(c2.c - c1.c);   //å‘é‡c1c2çš„æè§’
+    double da = acos((c1.r * c1.r + d * d - c2.r * c2.r) / (2 * c1.r * d));  //c1c2åˆ°c1p1çš„è§’
     Point p1 = c1.point(a - da), p2 = c1.point(a + da);
     ans.push_back(p1);
     if (p1 == p2) return 1;
@@ -313,13 +273,13 @@ int GetCircleCirlceIntersection(Circle c1, Circle c2, vector<Point> &ans)
     return 2;
 }
 
-//[18]¹ı¶¨µã×÷Ô²µÄÇĞÏß v[i]ÊÇµÚiÌõÇĞÏßµÄÏòÁ¿(ÏÂ±ê´Ó1¿ªÊ¼) ·µ»ØÇĞÏßÌõÊı
+//[18]è¿‡å®šç‚¹ä½œåœ†çš„åˆ‡çº¿ v[i]æ˜¯ç¬¬iæ¡åˆ‡çº¿çš„å‘é‡(ä¸‹æ ‡ä»1å¼€å§‹) è¿”å›åˆ‡çº¿æ¡æ•°
 int GetTangents(Point p, Circle c, Vector v[])
 {
     Vector u = c.c - p;
     double dist = Length(u);
-    if (dist < c.r) return 0;   //pÔÚÔ²ÄÚ
-    else if (dcmp(dist - c.r) == 0)  //pÔÚÔ²ÉÏ,Ö»ÓĞÒ»ÌõÇĞÏß
+    if (dist < c.r) return 0;   //påœ¨åœ†å†…
+    else if (dcmp(dist - c.r) == 0)  //påœ¨åœ†ä¸Š,åªæœ‰ä¸€æ¡åˆ‡çº¿
     {
         v[1] = Rotate(u, PI / 2);
         return 1;
@@ -333,8 +293,8 @@ int GetTangents(Point p, Circle c, Vector v[])
     }
 }
 
-//[19]Á½Ô²µÄ¹«ÇĞÏß a[i]ºÍb[i]·Ö±ğÊÇµÚiÌõÇĞÏßÔÚÔ²c1ºÍÔ²c2ÉÏµÄÇĞµã(ÏÂ±ê´Ó1¿ªÊ¼)
-//Í¨¹ı·µ»ØÖµÅĞ¶ÏÁ½Ô²¹ØÏµ: -1:ÍêÈ«ÖØºÏ 0:ÄÚº¬ 1:ÄÚÇĞ 2:Ïà½» 3:ÍâÇĞ 4:ÏàÀë
+//[19]ä¸¤åœ†çš„å…¬åˆ‡çº¿ a[i]å’Œb[i]åˆ†åˆ«æ˜¯ç¬¬iæ¡åˆ‡çº¿åœ¨åœ†c1å’Œåœ†c2ä¸Šçš„åˆ‡ç‚¹(ä¸‹æ ‡ä»1å¼€å§‹)
+//é€šè¿‡è¿”å›å€¼åˆ¤æ–­ä¸¤åœ†å…³ç³»: -1:å®Œå…¨é‡åˆ 0:å†…å« 1:å†…åˆ‡ 2:ç›¸äº¤ 3:å¤–åˆ‡ 4:ç›¸ç¦»
 int GetTangents(Circle c1, Circle c2, Point a[], Point b[])
 {
     int cnt = 0;
@@ -346,23 +306,23 @@ int GetTangents(Circle c1, Circle c2, Point a[], Point b[])
     int d2 = (c1.c.x - c2.c.x) * (c1.c.x - c2.c.x) + (c1.c.y - c2.c.y) * (c1.c.y - c2.c.y);
     int rdiff = c1.r - c2.r;
     int rsum = c1.r + c2.r;
-    if (d2 < rdiff * rdiff) return 0;   //ÄÚº¬
+    if (d2 < rdiff * rdiff) return 0;   //å†…å«
     double base = atan2(c2.c.y - c1.c.y, c2.c.x - c1.c.x);
-    if (d2 == 0 && c1.r == c2.r) return -1;   //ÎŞÏŞ¶àÌõÇĞÏß
-    if (d2 == rdiff * rdiff)   //ÄÚÇĞ, Ò»ÌõÄÚÇĞÏß
+    if (d2 == 0 && c1.r == c2.r) return -1;   //æ— é™å¤šæ¡åˆ‡çº¿
+    if (d2 == rdiff * rdiff)   //å†…åˆ‡, ä¸€æ¡å†…åˆ‡çº¿
     {
         a[1] = c1.point(base), b[1] = c2.point(base); 
         return 1;
     }
-    double ang = acos((c1.r - c2.r) / sqrt(d2));   //ÓĞÍâ¹«ÇĞÏß
+    double ang = acos((c1.r - c2.r) / sqrt(d2));   //æœ‰å¤–å…¬åˆ‡çº¿
     a[1] = c1.point(base + ang), b[1] = c2.point(base + ang);
     a[2] = c1.point(base - ang), b[2] = c2.point(base - ang);
-    if (d2 == rsum * rsum)    //ÍâÇĞ, Ò»ÌõÄÚ¹«ÇĞÏß
+    if (d2 == rsum * rsum)    //å¤–åˆ‡, ä¸€æ¡å†…å…¬åˆ‡çº¿
     {
         a[3] = c1.point(base), b[3] = c2.point(PI + base);
         return 3;
     }
-    if (d2 > rsum * rsum)   //ÏàÀë, Á½ÌõÄÚ¹«ÇĞÏß
+    if (d2 > rsum * rsum)   //ç›¸ç¦», ä¸¤æ¡å†…å…¬åˆ‡çº¿
     {
         double ang = acos((c1.r + c2.r) / (sqrt(d2)));
         a[3] = c1.point(base + ang), b[3] = c2.point(PI + base + ang);
@@ -372,7 +332,7 @@ int GetTangents(Circle c1, Circle c2, Point a[], Point b[])
     return 2;
 }
 
-//[20]Èı½ÇĞÎÍâ½ÓÔ²
+//[20]ä¸‰è§’å½¢å¤–æ¥åœ†
 Circle OutCircle(Point p1, Point p2, Point p3)
 {
     double bx = p2.x - p1.x, by = p2.y - p1.y;
@@ -384,7 +344,7 @@ Circle OutCircle(Point p1, Point p2, Point p3)
     return Circle(p, Length(p1 - p));
 }
 
-//[21]Èı½ÇĞÎÄÚÇĞÔ²
+//[21]ä¸‰è§’å½¢å†…åˆ‡åœ†
 Circle InCircle(Point p1, Point p2, Point p3)
 {
     double a = Length(p2 - p3);
@@ -394,31 +354,31 @@ Circle InCircle(Point p1, Point p2, Point p3)
     return Circle(p, DistanceToLine(p, p1, p2));
 }
 
-//[22]µãÔÚ¶à±ßĞÎÄÚÅĞ¶Ï
-//(1)µã±àºÅ [0, n)
-//(2)·µ»ØÖµ: -1:ÔÚ±ß½çÉÏ 1:ÔÚÄÚ²¿ 0:ÔÚÍâ²¿
+//[22]ç‚¹åœ¨å¤šè¾¹å½¢å†…åˆ¤æ–­
+//(1)ç‚¹ç¼–å· [0, n)
+//(2)è¿”å›å€¼: -1:åœ¨è¾¹ç•Œä¸Š 1:åœ¨å†…éƒ¨ 0:åœ¨å¤–éƒ¨
 int IsPointInPolygon(Point p, Point poly[], int n)
 {
     int i, k, d1, d2, wn = 0;
     for (i = 0; i < n; i++)
     {
-        if (OnSegment(p, poly[i], poly[(i + 1) % n])) return -1;   //ÔÚ±ß½çÉÏ
+        if (OnSegment(p, poly[i], poly[(i + 1) % n])) return -1;   //åœ¨è¾¹ç•Œä¸Š
         k = dcmp(Cross(poly[(i + 1) % n] - poly[i], p - poly[i]));
         d1 = dcmp(poly[i].y - p.y);
         d2 = dcmp(poly[(i + 1) % n].y - p.y); 
         if (k > 0 && d1 <= 0 && d2 > 0) wn++;
         if (k < 0 && d2 <= 0 && d1 > 0) wn--;
     }
-    if (wn != 0) return 1;   //ÄÚ²¿
-    return 0;   //Íâ²¿
+    if (wn != 0) return 1;   //å†…éƒ¨
+    return 0;   //å¤–éƒ¨
 }
 
-//[23]¼ÆËãÍ¹°ü    ÇĞ¼Ç:ÊäÈë²»ÄÜÓĞÖØ¸´µã
-//(1)ÊäÈëµãÊı×éÎªp, ÏÂ±ê[0,n)! Í¹°üÊı×éÎªans, ÏÂ±ê[0,m). º¯Êı·µ»ØÍ¹°ü¶¥µãÊı!
-//(2)ÊäÈë²»ÄÜÓĞÖØ¸´µã, º¯ÊıÖ´ĞĞÍêÖ®ºóÊäÈëµãµÄË³Ğò±»ÆÆ»µ
-//(3)Èç¹ûÏ£ÍûÔÚÍ¹°üµÄ±ßÉÏÓĞÊäÈëµã, °ÑÁ½¸ö <= ¸Ä³É <
-//(4)¾«¶ÈÒªÇó¸ßÊ±½¨ÒéÓÃdcmp±È½Ï
-//(5)Ê±¼ä¸´ÔÓ¶È: O(nlogn)
+//[23]è®¡ç®—å‡¸åŒ…    åˆ‡è®°:è¾“å…¥ä¸èƒ½æœ‰é‡å¤ç‚¹
+//(1)è¾“å…¥ç‚¹æ•°ç»„ä¸ºp, ä¸‹æ ‡[0,n)! å‡¸åŒ…æ•°ç»„ä¸ºans, ä¸‹æ ‡[0,m). å‡½æ•°è¿”å›å‡¸åŒ…é¡¶ç‚¹æ•°!
+//(2)è¾“å…¥ä¸èƒ½æœ‰é‡å¤ç‚¹, å‡½æ•°æ‰§è¡Œå®Œä¹‹åè¾“å…¥ç‚¹çš„é¡ºåºè¢«ç ´å
+//(3)å¦‚æœå¸Œæœ›åœ¨å‡¸åŒ…çš„è¾¹ä¸Šæœ‰è¾“å…¥ç‚¹, æŠŠä¸¤ä¸ª <= æ”¹æˆ <
+//(4)ç²¾åº¦è¦æ±‚é«˜æ—¶å»ºè®®ç”¨dcmpæ¯”è¾ƒ
+//(5)æ—¶é—´å¤æ‚åº¦: O(nlogn)
 
 int cmp(const Point &a, const Point &b)
 {
@@ -430,7 +390,7 @@ int cmp(const Point &a, const Point &b)
 int ConvexHull(Point p[], int n, Point ans[])
 {
     int i, k, m = 0;
-    sort (p, p + n, cmp);   //ÏÈ±È½Ïx×ø±ê, ÔÙ±È½Ïy×ø±ê
+    sort (p, p + n, cmp);   //å…ˆæ¯”è¾ƒxåæ ‡, å†æ¯”è¾ƒyåæ ‡
     for (i = 0; i < n; i++)
     {
         while (m > 1 && dcmp(Cross(ans[m - 1] - ans[m - 2], p[i] - ans[m - 2])) <= 0) m--; 
