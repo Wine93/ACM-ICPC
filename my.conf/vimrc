@@ -1,0 +1,75 @@
+
+"--------------------------------------------------------------------------------------
+
+"Basic set
+
+sy on
+set ai
+set ci
+set si
+set ts=4
+set sts=4
+set sw=4
+set mouse=a
+set foldmethod=indent
+
+"--------------------------------------------------------------------------------------
+
+"Call C++ head.cpp
+
+map <F1> :call SetTitle()<CR>
+func SetTitle()
+let l = 0
+let l = l + 1 | call setline(l,'# include<map>')
+let l = l + 1 | call setline(l,'# include<set>')
+let l = l + 1 | call setline(l,'# include<list>')
+let l = l + 1 | call setline(l,'# include<cmath>')
+let l = l + 1 | call setline(l,'# include<queue>')
+let l = l + 1 | call setline(l,'# include<stack>')
+let l = l + 1 | call setline(l,'# include<vector>')
+let l = l + 1 | call setline(l,'# include<string>')
+let l = l + 1 | call setline(l,'# include<cstdio>')
+let l = l + 1 | call setline(l,'# include<cstring>')
+let l = l + 1 | call setline(l,'# include<iostream>')
+let l = l + 1 | call setline(l,'# include<algorithm>')
+let l = l + 1 | call setline(l,'# include<functional>')
+let l = l + 1 | call setline(l,'using namespace std;')
+let l = l + 1 | call setline(l,'')
+
+let l = l + 1 | call setline(l,'typedef pair<int,int> PII;')
+let l = l + 1 | call setline(l,'# define INF 1<<30')
+let l = l + 1 | call setline(l,'# define LL long long')
+let l = l + 1 | call setline(l,'# define MOD 1000000007')
+let l = l + 1 | call setline(l,'# define VI vector<int>')
+let l = l + 1 | call setline(l,'# define VLL vector<LL>')
+let l = l + 1 | call setline(l,'# define VPII vector<PII>')
+let l = l + 1 | call setline(l,'# define VS vector<string>')
+let l = l + 1 | call setline(l,'# define PII pair<int,int>')
+let l = l + 1 | call setline(l,'')
+
+let l = l + 1 | call setline(l,'# define F first')
+let l = l + 1 | call setline(l,'# define S second')
+let l = l + 1 | call setline(l,'# define mp make_pair')
+let l = l + 1 | call setline(l,'# define pb push_back')
+let l = l + 1 | call setline(l,'# define lb lower_bound')
+let l = l + 1 | call setline(l,'# define up upper_bound')
+let l = l + 1 | call setline(l,'# define lowbit(x)(x&-x)')
+let l = l + 1 | call setline(l,'# define lson l,m,rt<<1')
+let l = l + 1 | call setline(l,'# define rson m+1,r,rt<<1|1')
+let l = l + 1 | call setline(l,'# define clr(x) (x).clear()')
+let l = l + 1 | call setline(l,'# define sz(x) ((int)(x).size())')
+let l = l + 1 | call setline(l,'# define all(x) (x).begin(),(x).end()')
+let l = l + 1 | call setline(l,'# define mem(x,y) memset(x,y,sizeof(x))')
+let l = l + 1 | call setline(l,'# define keytree (chd[chd[root][1]][0])')
+let l = l + 1 | call setline(l,'# define rep(i,a,b) for(i=(a);i<=(b);i++))')
+let l = l + 1 | call setline(l,'# define forall(it,c) for(typeof((c).begin())it=(c).begin();it!=(c).end();it++)')
+let l = l + 1 | call setline(l,'')
+
+
+let l = l + 1 | call setline(l,'int main()')
+let l = l + 1 | call setline(l,'{')
+let l = l + 1 | call setline(l,'    //freopen("in.txt","r",stdin);')
+let l = l + 1 | call setline(l,'    //freopen("out.txt","w",stdout);')
+let l = l + 1 | call setline(l,'    return 0;')
+let l = l + 1 | call setline(l,'}')
+endfunc
