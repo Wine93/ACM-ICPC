@@ -1,6 +1,6 @@
 /*
-ע��: n, m���Ϊ300
-      �ȵ���initLog(ֻ��Ҫ����һ��), �ٵ���initRMQ;
+注意: n, m最大为300
+      先调用initLog(只需要调用一次), 再调用initRMQ;
 */
 class RMQ
 {
@@ -18,7 +18,7 @@ public:
             Log2[i] = Log2[i-1] + !((i - 1)&i);
     }
     
-    //�±귶Χ[1, 1] - [n, m], ����N��С�ɸ���ʵ������޸�
+    //下标范围[1, 1] - [n, m], 传递N大小可根据实际情况修改
     void initRMQ(int a[][MAXN], int n, int m)
     {
         int i, j, k, l;
