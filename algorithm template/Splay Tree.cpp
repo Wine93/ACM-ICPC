@@ -1,5 +1,5 @@
 /**************************************************************
-    Problem: BZOJ 1500 [NOI2005]Î¬ÐÞÊýÁÐ
+    Problem: BZOJ 1500 [NOI2005]ç»´ä¿®æ•°åˆ—
     User: Wine93
     Language: C++
     Result: Accepted
@@ -7,40 +7,34 @@
     Memory:26688 kb
     Url: http://61.187.179.132/JudgeOnline/problem.php?id=1500
 ****************************************************************/
- 
-# include<cstdio>
-# include<algorithm>
-   
-using std::swap;
-using std::max;
-   
+
 # define LL long long 
 # define inf 1<<29
 # define keytree (chd[chd[root][1]][0])
 # define N 500005
    
-int fa[N],chd[N][2],val[N],sz[N];  
+int fa[N], chd[N][2], val[sz[N];  
 int root,tot1,tot2;
-int q[N],s[N];   //»ØÊÕÄÚ´æ 
+int q[N],s[N];   //å›žæ”¶å†…å­˜ 
 int num[N];
 int sam[N],sum[N],lx[N],rx[N],mx[N];    
 bool rev[N];
    
 /*
  * Splay Tree
- * Ëù´¦ÀíµÄÊý×éÏÂ±êÎª1-N£¬ÎªÊµÏÖ·½±ã£¬ÔÚ0ºÍN+1µÄÎ»ÖÃÔö¼ÓÒ»¸ökeyÎªkeyInfµÄ½áµã
- * select()º¯ÊýÖÐµÄkthÓëÊµ¼ÊÏÂ±ßµÄ¹ØÏµÈçÏÂ
+ * æ‰€å¤„ç†çš„æ•°ç»„ä¸‹æ ‡ä¸º1-Nï¼Œä¸ºå®žçŽ°æ–¹ä¾¿ï¼Œåœ¨0å’ŒN+1çš„ä½ç½®å¢žåŠ ä¸€ä¸ªkeyä¸ºkeyInfçš„ç»“ç‚¹
+ * select()å‡½æ•°ä¸­çš„kthä¸Žå®žé™…ä¸‹è¾¹çš„å…³ç³»å¦‚ä¸‹
  * keyInf - num - num - num - num - keyInf
  *     0     1     2     3     4     5
- * ÁíÍâÓÃ0½ÚµãÌæ»»¿Õ½Úµã
+ * å¦å¤–ç”¨0èŠ‚ç‚¹æ›¿æ¢ç©ºèŠ‚ç‚¹
  * 
- * ×¢Òâ1.Ã¿´Î²åÈë,ÐÞ¸Ä£¬·­×ªµÈ²Ù×÷ºóÐèÒªÐý×ªkeytreeµ½¸ù½Úµã,ÒÔÎ¬»¤Ïà¹ØÖµ splay(keytree,0).É¾³ý²Ù×÷ÌØÍâ,PushUp½øÐÐ¸üÐÂ
- * ×¢Òâ2.³õÊ¼»¯½Úµã0µÄÏà¹ØÖµ±ØÐë¸ù¾ÝÌâÒâµ÷Õû,Èçmx,lx,rx...
- * ×¢Òâ3.PushDown²Ù×÷Ê±,Ö»Òª¸Ã½Úµã´òÉÏ±ê¼ÇÁË,¾Í±ØÐë¸üÐÂ¸Ã½ÚµãµÄÏà¹ØÖµ,ÀÁ¶è±ê¼ÇÖ»ÊÇÆðµ½±ê¼Ç×÷ÓÃ(¿É²é¿´rev²Ù×÷)
+ * æ³¨æ„1.æ¯æ¬¡æ’å…¥,ä¿®æ”¹ï¼Œç¿»è½¬ç­‰æ“ä½œåŽéœ€è¦æ—‹è½¬keytreeåˆ°æ ¹èŠ‚ç‚¹,ä»¥ç»´æŠ¤ç›¸å…³å€¼ splay(keytree,0).åˆ é™¤æ“ä½œç‰¹å¤–,PushUpè¿›è¡Œæ›´æ–°
+ * æ³¨æ„2.åˆå§‹åŒ–èŠ‚ç‚¹0çš„ç›¸å…³å€¼å¿…é¡»æ ¹æ®é¢˜æ„è°ƒæ•´,å¦‚mx,lx,rx...
+ * æ³¨æ„3.PushDownæ“ä½œæ—¶,åªè¦è¯¥èŠ‚ç‚¹æ‰“ä¸Šæ ‡è®°äº†,å°±å¿…é¡»æ›´æ–°è¯¥èŠ‚ç‚¹çš„ç›¸å…³å€¼,æ‡’æƒ°æ ‡è®°åªæ˜¯èµ·åˆ°æ ‡è®°ä½œç”¨(å¯æŸ¥çœ‹revæ“ä½œ)
  */
   
 /*
- *  ¸üÐÂ¹Ø¼ü×Ö
+ *  æ›´æ–°å…³é”®å­—
  */
 void PushUp(int x)
 {
@@ -75,7 +69,7 @@ void update_sam(int x,int c)
 }
   
 /*
- *  ±ê¼ÇÏÂ·Å
+ *  æ ‡è®°ä¸‹æ”¾
  */
 void PushDown(int x)  
 {
@@ -94,7 +88,7 @@ void PushDown(int x)
 }
   
 /*
- * Ðý×ª²Ù×÷, t=0 ±íÊ¾×óÐý, t=1 ±íÊ¾ÓÒÐý
+ * æ—‹è½¬æ“ä½œ, t=0 è¡¨ç¤ºå·¦æ—‹, t=1 è¡¨ç¤ºå³æ—‹
  */
 void rotate(int x,int t)
 {
@@ -112,7 +106,7 @@ void rotate(int x,int t)
 }
   
 /*
- * Ðý×ªÊ¹x³ÉÎªgoalµÄ×Ó½Úµã£¬ÈôgoalÎª0ÔòxÐý×ªÎª¸ù½Úµã
+ * æ—‹è½¬ä½¿xæˆä¸ºgoalçš„å­èŠ‚ç‚¹ï¼Œè‹¥goalä¸º0åˆ™xæ—‹è½¬ä¸ºæ ¹èŠ‚ç‚¹
  */
 void splay(int x,int goal)    
 {
@@ -137,7 +131,7 @@ void splay(int x,int goal)
 }
   
 /*
- * ÕÒµ½Î»ÖÃÎªkµÄ½Úµã,·µ»ØÆäÖµ,²¢½«ÆäÉýÖÁxµÄ¶ù×Ó
+ * æ‰¾åˆ°ä½ç½®ä¸ºkçš„èŠ‚ç‚¹,è¿”å›žå…¶å€¼,å¹¶å°†å…¶å‡è‡³xçš„å„¿å­
  */
 int select(int k,int goal)   
 {
@@ -160,7 +154,7 @@ int select(int k,int goal)
 } 
   
 /*
- * ½«ÒÔxÎª¸ùµÄÕû¿Ã×ÓÊ÷É¾³ýµô,²¢»ØÊÕÄÚ´æ
+ * å°†ä»¥xä¸ºæ ¹çš„æ•´æ£µå­æ ‘åˆ é™¤æŽ‰,å¹¶å›žæ”¶å†…å­˜
  */
 void erase(int x)   
 {
@@ -178,7 +172,7 @@ void erase(int x)
 }
   
 /*
- * ÔÚx½Úµã´¦Éú³ÉÒ»¸öÐÂµÄ½Úµã,ÖµÎªx,¸¸½ÚµãÎªf,Ö®Ç°É¾³ýµÄ½Úµã»á·Åµ½sÖÐÒÔ±ãÔÙÀûÓÃ
+ * åœ¨xèŠ‚ç‚¹å¤„ç”Ÿæˆä¸€ä¸ªæ–°çš„èŠ‚ç‚¹,å€¼ä¸ºx,çˆ¶èŠ‚ç‚¹ä¸ºf,ä¹‹å‰åˆ é™¤çš„èŠ‚ç‚¹ä¼šæ”¾åˆ°sä¸­ä»¥ä¾¿å†åˆ©ç”¨
  */
 void newnode(int &x,int v,int f)   
 {
@@ -195,7 +189,7 @@ void newnode(int &x,int v,int f)
 }
   
 /*
- * ÓÃnumÊý×éÖÐ[l,r]Çø¼äÄÚµÄÖµ½¨Ê÷
+ * ç”¨numæ•°ç»„ä¸­[l,r]åŒºé—´å†…çš„å€¼å»ºæ ‘
  */
 void build(int &x,int l,int r,int f)   
 {
@@ -210,7 +204,7 @@ void build(int &x,int l,int r,int f)
 }  
   
 /*
- *   ½øÐÐ³õÊ¼»¯¹¤×÷,¸ù¾ÝÌâÒâµ÷Õû0½ÚµãµÄÏà¹ØÖµ,ÆäËû²»ÐèÒªÌôÕ½ÄØ¸ö
+ *   è¿›è¡Œåˆå§‹åŒ–å·¥ä½œ,æ ¹æ®é¢˜æ„è°ƒæ•´0èŠ‚ç‚¹çš„ç›¸å…³å€¼,å…¶ä»–ä¸éœ€è¦æŒ‘æˆ˜å‘¢ä¸ª
  */
 void init()
 {
@@ -224,7 +218,7 @@ void init()
 }
   
 /*
- *   1.ÔÚposºó²åÈëtot¸öÊý¾Ý(tot¸öÊý¾Ý´æÓÚnumÊý×éÖÐ)
+ *   1.åœ¨posåŽæ’å…¥totä¸ªæ•°æ®(totä¸ªæ•°æ®å­˜äºŽnumæ•°ç»„ä¸­)
  */
  
 void Insert(int pos,int tot)   
@@ -236,9 +230,9 @@ void Insert(int pos,int tot)
 }
   
 /*
- *   2.É¾³ý´Ópos¿ªÊ¼µÄtot¸öÊý¾Ý
+ *   2.åˆ é™¤ä»Žposå¼€å§‹çš„totä¸ªæ•°æ®
  */
-void Delete(int pos,int tot)  //2.É¾³ý 
+void Delete(int pos,int tot)  //2.åˆ é™¤ 
 {
     select(pos-1,0);
     select(pos+tot,root);
@@ -248,7 +242,7 @@ void Delete(int pos,int tot)  //2.É¾³ý
 }
   
 /*
- *   3.´Ópos¿ªÊ¼µÄtot¸öÊý¾Ý¶¼×ª±ä³Éc
+ *   3.ä»Žposå¼€å§‹çš„totä¸ªæ•°æ®éƒ½è½¬å˜æˆc
  */
 void MakeSame(int pos,int tot,int c)  
 {
@@ -259,7 +253,7 @@ void MakeSame(int pos,int tot,int c)
 }
   
 /*
- *   4.´Ópos¿ªÊ¼µÄtot¸öÊý¾Ý½øÐÐ·­×ª
+ *   4.ä»Žposå¼€å§‹çš„totä¸ªæ•°æ®è¿›è¡Œç¿»è½¬
  */
 void Reverse(int pos,int tot)   
 {
@@ -270,9 +264,9 @@ void Reverse(int pos,int tot)
 }
   
 /*
- *   5.»ñÈ¡´Ópos¿ªÊ¼µÄtot¸öÊý¾ÝºÍ
+ *   5.èŽ·å–ä»Žposå¼€å§‹çš„totä¸ªæ•°æ®å’Œ
  */
-void GetSum(int pos,int tot)   //5.ÇóºÍ
+void GetSum(int pos,int tot)   //5.æ±‚å’Œ
 {
     select(pos-1,0);
     select(pos+tot,root);
@@ -280,7 +274,7 @@ void GetSum(int pos,int tot)   //5.ÇóºÍ
 }
   
  /*
- *   6.×î´ó×ÔÐòÁÐºÍ
+ *   6.æœ€å¤§è‡ªåºåˆ—å’Œ
  */
 void MaxSum()     
 {
