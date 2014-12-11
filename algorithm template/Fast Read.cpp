@@ -1,5 +1,5 @@
 
-//ÊäÈëÍâ¹Ò£¬Ê¹ÓÃdouble a,readdouble(a)¼´¿É
+//è¾“å…¥å¤–æŒ‚ï¼Œä½¿ç”¨double a,readdouble(a)å³å¯
 bool readdouble(double &ret){
 	int sgn;
 	double bit=0.1;
@@ -16,7 +16,7 @@ bool readdouble(double &ret){
 	return false;
 }
 
-//ÊäÈëÍâ¹Ò£¬Ê¹ÓÃ·½·¨ int a;a=Scan();
+//è¾“å…¥å¤–æŒ‚ï¼Œä½¿ç”¨æ–¹æ³• int a;a=Scan();
 int readint()  
 {  
     int res=0,ch;  
