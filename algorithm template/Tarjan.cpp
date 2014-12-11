@@ -1,18 +1,18 @@
 
 /* 
- * ×¢Òâµã:
- * 1. ÓĞĞ©Í¼²»Á¬Í¨,Ğè¶à´Îµ÷ÓÃtarjan (dfnÎª0¾Íµ÷ÓÃ)
+ * æ³¨æ„ç‚¹:
+ * 1. æœ‰äº›å›¾ä¸è¿é€š,éœ€å¤šæ¬¡è°ƒç”¨tarjan (dfnä¸º0å°±è°ƒç”¨)
  * 
  */
 const int maxn = 10005;
 const int maxm = 50005;
 
 int num, head[maxn];
-int cnt;   //Ê±¼ä´Á, ·¶Î§[1, cnt]
-int scc;   //Ç¿ÁªÍ¨¸öÊı, ·¶Î§[1, scc]
+int cnt;   //æ—¶é—´æˆ³, èŒƒå›´[1, cnt]
+int scc;   //å¼ºè”é€šä¸ªæ•°, èŒƒå›´[1, scc]
 int low[maxn];
 int dfn[maxn];
-int col[maxn];   //µãÊôÓÚÇ¿ÁªÍ¨±àºÅ
+int col[maxn];   //ç‚¹å±äºå¼ºè”é€šç¼–å·
 stack<int> stk;
 
 struct node
@@ -20,7 +20,7 @@ struct node
 	int u, v, next;
 }e[maxm];
 
-void addedge(int u,int v)
+void addedge(int u, int v)
 {
 	e[num].u = u;
 	e[num].v = v;
