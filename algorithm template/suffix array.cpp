@@ -1,34 +1,34 @@
-/*   [Ëã·¨Ãû³Æ] ºó×ºÊý×é
- *   [¸´ ÔÓ ¶È] O(nlogn) 
- *   [Ëµ    Ã÷]
- *   1.insert½øµÄÈ«²¿Êý¶¼±ØÐë´óÓÚ0,Èç³öÏÖÌØÊâÇé¿ö,¿É¸ù¾ÝÌâÒâ½«Ô­Êý¼ÓÉÏÄ³¸öÊýÊ¹Ö®´óÓÚ0
- *   2.getsa()º¯ÊýÖÐµÄmÄ¬ÈÏÎª256 m=max{init[i]}+1,¿É¸ù¾ÝÌâÒâ¸ü¸Ä
- *   3.ÊäÈëµÄÊý¾Ý´ÓÏÂ±ê0¿ªÊ¼´æ´¢ÔÚinitÊý×é.µÚsizeÎ»Ôò×Ô¶¯Ìí¼ÓÉÏ¸ö0
- *   4.Ñ¯ÎÊlcpÊ±ÊäÈëa,b±ØÐë²»Í¬
- *   5.ËùÓÐµÄ×Ö·û´æÔÚ[0,size]ÄÚ,²¢·Ç[0,size)
- *   6.½«heightÊý×é·Ö×é,¿ÉÈ·±£Ç°×ºÏàÍ¬
+/*   [ç®—æ³•åç§°] åŽç¼€æ•°ç»„
+ *   [å¤ æ‚ åº¦] O(nlogn) 
+ *   [è¯´    æ˜Ž]
+ *   1.insertè¿›çš„å…¨éƒ¨æ•°éƒ½å¿…é¡»å¤§äºŽ0,å¦‚å‡ºçŽ°ç‰¹æ®Šæƒ…å†µ,å¯æ ¹æ®é¢˜æ„å°†åŽŸæ•°åŠ ä¸ŠæŸä¸ªæ•°ä½¿ä¹‹å¤§äºŽ0
+ *   2.getsa()å‡½æ•°ä¸­çš„mé»˜è®¤ä¸º256 m=max{init[i]}+1,å¯æ ¹æ®é¢˜æ„æ›´æ”¹
+ *   3.è¾“å…¥çš„æ•°æ®ä»Žä¸‹æ ‡0å¼€å§‹å­˜å‚¨åœ¨initæ•°ç»„.ç¬¬sizeä½åˆ™è‡ªåŠ¨æ·»åŠ ä¸Šä¸ª0
+ *   4.è¯¢é—®lcpæ—¶è¾“å…¥a,bå¿…é¡»ä¸åŒ
+ *   5.æ‰€æœ‰çš„å­—ç¬¦å­˜åœ¨[0,size]å†…,å¹¶éž[0,size)
+ *   6.å°†heightæ•°ç»„åˆ†ç»„,å¯ç¡®ä¿å‰ç¼€ç›¸åŒ
  */
 class SuffixArray
 {
 public:
     static const int maxn = 220000;
-    int init[maxn];//½«³õÊ¼Êý¾Ý,±£´æÔÚinitÀï,²¢±£Ö¤Ã¿¸öÊý×Ö¶¼±È0´ó
+    int init[maxn];//å°†åˆå§‹æ•°æ®,ä¿å­˜åœ¨inité‡Œ,å¹¶ä¿è¯æ¯ä¸ªæ•°å­—éƒ½æ¯”0å¤§
     int X[maxn];
     int Y[maxn];
-    int Rank[maxn]; //Ãû´ÎÊý×é,´Ó0¿ªÊ¼
-    int sa[maxn]; //sa´Ó1¿ªÊ¼,ÒòÎª×îºóÒ»¸ö×Ö·û(×îÐ¡µÄ)ÅÅÔÚµÚ0Î» [0,size]
-    int high[maxn]; //high´Ó1¿ªÊ¼,±íÊ¾µÄÊÇsa[i]ºÍsa[i+1] [0,size)
+    int Rank[maxn]; //åæ¬¡æ•°ç»„,ä»Ž0å¼€å§‹
+    int sa[maxn]; //saä»Ž1å¼€å§‹,å› ä¸ºæœ€åŽä¸€ä¸ªå­—ç¬¦(æœ€å°çš„)æŽ’åœ¨ç¬¬0ä½ [0,size]
+    int high[maxn]; //highä»Ž1å¼€å§‹,è¡¨ç¤ºçš„æ˜¯sa[i]å’Œsa[i+1] [0,size)
     int buc[maxn];
     int log2[maxn];
     int best[maxn][20];
     int size;
-    //³õÊ¼Êý¾Ý¸öÊý
+    //åˆå§‹æ•°æ®ä¸ªæ•°
     void clear()
     {
         size  =0;
     }
 
-    //ÊäÈëÒ»¸öÊý
+    //è¾“å…¥ä¸€ä¸ªæ•°
     void insert(int n)
     {
         init[size++] = n;
@@ -39,8 +39,8 @@ public:
         return (r[a] == r[b] && r[a + l] == r[b + l]);
     }
 
-    //µ±ÐèÒª·´¸´Ñ¯ÎÊÁ½¸öºó×ºµÄ×î³¤¹«¹²Ç°×ºÊ±ÓÃµ½RMQ
-    //nÎª×Ö·û´®³¤¶È, mÎª×î´óÖµ
+    //å½“éœ€è¦åå¤è¯¢é—®ä¸¤ä¸ªåŽç¼€çš„æœ€é•¿å…¬å…±å‰ç¼€æ—¶ç”¨åˆ°RMQ
+    //nä¸ºå­—ç¬¦ä¸²é•¿åº¦, mä¸ºæœ€å¤§å€¼
     void getsa(int m = 256)
     {
         init[size] = 0;
@@ -89,7 +89,7 @@ public:
         } 
     }
 
-    //Ô¤´¦ÀíÃ¿¸öÊý×ÖµÄLogÖµ,³£ÊýÓÅ»¯,ÓÃÓÚRMQ
+    //é¢„å¤„ç†æ¯ä¸ªæ•°å­—çš„Logå€¼,å¸¸æ•°ä¼˜åŒ–,ç”¨äºŽRMQ
     void initLog()
     {
         int i;  
@@ -98,7 +98,7 @@ public:
             log2[i] = (i & (i - 1)) ? log2[i - 1] : log2[i - 1] + 1;
     }
 
-    //³õÊ¼»¯RMQ
+    //åˆå§‹åŒ–RMQ
     void initRMQ()
     {
         int i, j, limit, n = size;
@@ -113,7 +113,7 @@ public:
           } 
       }
 
-    //Ñ¯ÎÊa,bºó×ºµÄ×î³¤¹«¹²Ç°×º ÓÃlcpÖ®Ç°,ÏÈ³õÊ¼»¯RMQ
+    //è¯¢é—®a,båŽç¼€çš„æœ€é•¿å…¬å…±å‰ç¼€ ç”¨lcpä¹‹å‰,å…ˆåˆå§‹åŒ–RMQ
     int lcp(int a,int b)
     {
         int t;
