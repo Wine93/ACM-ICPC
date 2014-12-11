@@ -6,7 +6,7 @@ void getnext(char *s)
 {
     int i = 0, j = -1, len = strlen(s);
     next[0] = -1;
-	for(i = 1; i < len; i++)
+	for(i = 1; i < len; i++
 	{
 		while(j >= 0 && s[j + 1] != s[i])
 			j = next[j];
