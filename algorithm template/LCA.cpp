@@ -1,16 +1,16 @@
 /*
- * 1. Ê¹ÓÃÇ°ÏÈµ÷ÓÃinit();
+ * 1. ä½¿ç”¨å‰å…ˆè°ƒç”¨init();
  * 2. 2^17=131072
  *    2^18=262144
- * 3. µ÷ÓÃdfsÊ±×¢ÒâµÚÒ»¸öfaÎª0»¹ÊÇ1(¼ÆËãdepÊ±ĞèÒª×ö³öµ÷Õû,·ÀÖ¹Êı×éÔ½½ç)
+ * 3. è°ƒç”¨dfsæ—¶æ³¨æ„ç¬¬ä¸€ä¸ªfaä¸º0è¿˜æ˜¯1(è®¡ç®—depæ—¶éœ€è¦åšå‡ºè°ƒæ•´,é˜²æ­¢æ•°ç»„è¶Šç•Œ)
  */
 
-const int MAXN = 100005;  //½Úµã¸öÊı
+const int MAXN = 100005;  //èŠ‚ç‚¹ä¸ªæ•°
 const int Pow = 18;
 
-vector<int> edge[MAXN];   //±ß
-int dep[MAXN];            //½ÚµãÉî¶È
-int p[MAXN][Pow];         //µÚ(2^j)¸ö¸¸½Úµã
+vector<int> edge[MAXN];   //è¾¹
+int dep[MAXN];            //èŠ‚ç‚¹æ·±åº¦
+int p[MAXN][Pow];         //ç¬¬(2^j)ä¸ªçˆ¶èŠ‚ç‚¹
 
 void dfs(int u, int fa)
 {
@@ -32,14 +32,14 @@ int lca(int a, int b)
 	int i, del;
 	if (dep[a] > dep[b])    
 		swap(a, b);
-	if (dep[a] < dep[b])   //µ÷Õûa,bÖÁÍ¬Ò»Éî¶È
+	if (dep[a] < dep[b])   //è°ƒæ•´a,bè‡³åŒä¸€æ·±åº¦
 	{
 		del = dep[b] - dep[a];
 		for (i = 0; i < Pow; i++)
 			if (del & (1 << i))
 				b = p[b][i];
 	}
-	if (a != b)    //¶ş·ÖÇólca
+	if (a != b)    //äºŒåˆ†æ±‚lca
 	{
 		for (i = Pow - 1; i >= 0; i--)
 			if (p[a][i] != p[b][i])
